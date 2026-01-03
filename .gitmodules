@@ -1,0 +1,3 @@
+[submodule "xibalba-crm"]
+	path = xibalba-crm
+	url = https://github.com/XibalbaTechSol/CAREPULSE-PaaS.git
