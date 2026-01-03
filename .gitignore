@@ -30,3 +30,12 @@
 client/css/espo/*
 client/lib/*
 client/modules/crm/lib/*
+
+# Python
+python/venv/
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
