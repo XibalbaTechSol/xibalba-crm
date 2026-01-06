@@ -39,3 +39,7 @@ __pycache__/
 
 # Node
 node_modules/
+
+# Security
+.env
+*.bak.*
