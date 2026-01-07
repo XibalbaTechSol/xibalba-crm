@@ -8,6 +8,7 @@ class User(Base):
 
     id = Column(String(24), primary_key=True, index=True)
     user_name = Column("userName", String(255), unique=True, index=True)
+    password = Column(String(255))
     first_name = Column("firstName", String(255))
     last_name = Column("lastName", String(255))
     is_admin = Column("isAdmin", Boolean, default=False)
