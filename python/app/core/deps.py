@@ -11,5 +11,6 @@ async def get_current_user(db: Session = Depends(get_db)) -> User:
     if not user:
         # Fallback to creating a mock user object if not in DB
         # Note: This is a bit hacky but helps skip auth for initial porting
-        return User(id="1", user_name="admin", name="Admin", is_admin=True)
+        # Do not set read-only property 'name' in constructor
+        return User(id="1", user_name="admin", first_name="Admin", is_admin=True)
     return user

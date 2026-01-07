@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Body, Query
 from sqlalchemy.orm import Session
+from typing import Optional
 from app.controllers import metadata, i18n, record_controller
 from app.api.v1 import attachment, notification
 from app.core.database import get_db
@@ -48,3 +49,33 @@ router.include_router(i18n.router)
 router.include_router(record_controller.router)
 router.include_router(attachment.router)
 router.include_router(notification.router)
+
+# Alias for generic Entity CRUD
+# Register these LAST to avoid shadowing specific routes like /Metadata
+@router.get("/{entityName}")
+def list_entity_alias(
+    entityName: str,
+    where: Optional[str] = Query(None),
+    sortBy: Optional[str] = Query(None),
+    asc: Optional[bool] = Query(False),
+    offset: Optional[int] = Query(0),
+    maxSize: Optional[int] = Query(20),
+    service: record_controller.RecordService = Depends(record_controller.get_record_service)
+):
+    return record_controller.get_list(entityName, where, sortBy, asc, offset, maxSize, service)
+
+@router.post("/{entityName}")
+def create_entity_alias(entityName: str, data: dict = Body(...), service: record_controller.RecordService = Depends(record_controller.get_record_service)):
+    return record_controller.create_record(entityName, data, service)
+
+@router.get("/{entityName}/{id}")
+def read_entity_alias(entityName: str, id: str, service: record_controller.RecordService = Depends(record_controller.get_record_service)):
+    return record_controller.read_record(entityName, id, service)
+
+@router.put("/{entityName}/{id}")
+def update_entity_alias(entityName: str, id: str, data: dict = Body(...), service: record_controller.RecordService = Depends(record_controller.get_record_service)):
+    return record_controller.update_record(entityName, id, data, service)
+
+@router.delete("/{entityName}/{id}")
+def delete_entity_alias(entityName: str, id: str, service: record_controller.RecordService = Depends(record_controller.get_record_service)):
+    return record_controller.delete_record(entityName, id, service)

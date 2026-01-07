@@ -1,0 +1,14 @@
+{
+    "fields": {
+        "post": {
+            "type": "text"
+        },
+        "createdByName": {
+            "type": "varchar"
+        },
+        "createdAt": {
+            "type": "datetime"
+        }
+    },
+    "links": {}
+}

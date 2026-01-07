@@ -15,7 +15,8 @@ const EntityDetail: React.FC = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 
-    const detailLayout = getMetadata(`entityDefs.${entityType}.layouts.detail`) || [];
+    const detailLayout = getMetadata(`clientDefs.${entityType}.layouts.detail`) ||
+        getMetadata(`entityDefs.${entityType}.layouts.detail`) || [];
 
     const fetchData = useCallback(async () => {
         setIsLoading(true);

@@ -1,0 +1,22 @@
+{
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": true
+        },
+        "description": {
+            "type": "text"
+        },
+        "dateStart": {
+            "type": "datetime"
+        },
+        "dateEnd": {
+            "type": "datetime"
+        },
+        "status": {
+            "type": "enum",
+            "options": ["Planned", "Held", "Not Held"]
+        }
+    },
+    "links": {}
+}

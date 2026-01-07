@@ -10,7 +10,7 @@ const StreamDashlet: React.FC<{ dashletId: string, options?: Record<string, any>
         const fetchStream = async () => {
             setIsLoading(true);
             try {
-                const response = await api.get('/api/v1/Stream', {
+                const response = await api.get('/api/v1/Record/Stream', {
                     params: {
                         maxSize: options?.displayRecords || 5,
                         skipOwn: options?.skipOwn || false

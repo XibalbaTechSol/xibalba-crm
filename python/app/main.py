@@ -16,7 +16,7 @@ from app.api.v1 import endpoints
 from app.core.database import engine
 from app.models.base import Base
 # Import models so they are registered with Base
-from app.models import user, attachment, notification, acl_entities, standard_entities
+from app.models import user, attachment, notification, acl_entities, standard_entities, meeting_stream
 
 Base.metadata.create_all(bind=engine)
 

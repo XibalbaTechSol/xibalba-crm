@@ -13,11 +13,12 @@ export interface FieldProps {
     params?: Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
-export const VarcharField: React.FC<FieldProps> = ({ value, mode, onChange }) => {
+export const VarcharField: React.FC<FieldProps> = ({ value, mode, onChange, name }) => {
     if (mode === 'edit' || mode === 'search') {
         return (
             <input
                 type="text"
+                name={name}
                 className="input-group input"
                 style={{ marginBottom: 0 }}
                 value={value || ''}

@@ -12,7 +12,9 @@ const EntityCreate: React.FC = () => {
     const [data, setData] = useState<Record<string, any>>({});
     const [isSaving, setIsSaving] = useState(false);
 
-    const editLayout = getMetadata(`entityDefs.${entityType}.layouts.edit`) ||
+    const editLayout = getMetadata(`clientDefs.${entityType}.layouts.edit`) ||
+        getMetadata(`clientDefs.${entityType}.layouts.detail`) ||
+        getMetadata(`entityDefs.${entityType}.layouts.edit`) ||
         getMetadata(`entityDefs.${entityType}.layouts.detail`) || [];
 
     const handleSave = async () => {

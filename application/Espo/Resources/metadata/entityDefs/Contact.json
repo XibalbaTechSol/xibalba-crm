@@ -1,0 +1,15 @@
+{
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": true
+        },
+        "email": {
+            "type": "email"
+        },
+        "phoneNumber": {
+            "type": "varchar"
+        }
+    },
+    "links": {}
+}

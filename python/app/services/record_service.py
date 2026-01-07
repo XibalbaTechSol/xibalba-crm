@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import inspect
 from app.models.user import User
 from app.models.standard_entities import Account, Contact
+from app.models.meeting_stream import Meeting, Stream
 from app.models.acl_entities import Role, Team
 from app.services.metadata import metadata_service
 from app.services.acl_service import acl_service
@@ -29,7 +30,9 @@ class RecordService:
             "Account": Account,
             "Contact": Contact,
             "Role": Role,
-            "Team": Team
+            "Team": Team,
+            "Meeting": Meeting,
+            "Stream": Stream
         }
 
     def _get_model(self, entity_name: str):
@@ -252,6 +255,9 @@ class RecordService:
         return [self._get_record_data(r) for r in linked_records]
 
     def _populate_record(self, record, data):
+        from sqlalchemy import DateTime
+        from datetime import datetime
+
         mapper = inspect(record).mapper
         for prop in mapper.iterate_properties:
             if hasattr(prop, 'columns'):
@@ -264,6 +270,18 @@ class RecordService:
                     val = data[prop.key]
 
                 if val is not None:
+                    # Handle DateTime conversion for SQLite
+                    if isinstance(col.type, DateTime):
+                        if isinstance(val, str):
+                            try:
+                                # Try parsing format: "YYYY-MM-DD HH:MM:SS" or ISO
+                                if 'T' in val:
+                                    val = datetime.fromisoformat(val.replace('Z', '+00:00'))
+                                else:
+                                    val = datetime.strptime(val, "%Y-%m-%d %H:%M:%S")
+                            except ValueError:
+                                # Keep as string if parsing fails, let SQLAlchemy/Driver handle error
+                                pass
                     setattr(record, prop.key, val)
 
     def _get_link_def(self, entity_name, link_name):

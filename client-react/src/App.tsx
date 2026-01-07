@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import EntityList from './pages/EntityList';
 import EntityCreate from './pages/EntityCreate';
 import EntityDetail from './pages/EntityDetail';
+import AIModulePage from './pages/Modules/AIModulePage';
 import './index.css';
 
 const AppContent: React.FC = () => {
@@ -29,6 +30,7 @@ const AppContent: React.FC = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/Modules" element={<AIModulePage />} />
           <Route path="/:entityType" element={<EntityList />} />
           <Route path="/:entityType/create" element={<EntityCreate />} />
           <Route path="/:entityType/view/:id" element={<EntityDetail />} />

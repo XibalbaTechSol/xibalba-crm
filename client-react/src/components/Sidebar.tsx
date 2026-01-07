@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
         { name: 'Contacts', icon: <Users size={20} />, path: '/Contact' },
         { name: 'Users', icon: <ShieldCheck size={20} />, path: '/User' },
         { name: 'Emails', icon: <Mail size={20} />, path: '/Email' },
-        { name: 'Modules', icon: <Package size={20} />, path: '/Extension' },
+        { name: 'Modules', icon: <Package size={20} />, path: '/Modules' },
         { name: 'Settings', icon: <Settings size={20} />, path: '/Settings' },
     ];
 

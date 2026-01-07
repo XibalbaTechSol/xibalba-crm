@@ -10,7 +10,7 @@ const CalendarDashlet: React.FC<{ dashletId: string, options?: Record<string, an
         const fetchEvents = async () => {
             setIsLoading(true);
             try {
-                const response = await api.get('/api/v1/Meeting', {
+                const response = await api.get('/api/v1/Record/Meeting', {
                     params: {
                         maxSize: 5,
                         offset: 0,

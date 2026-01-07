@@ -1,0 +1,15 @@
+{
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": true
+        },
+        "billingAddressCity": {
+            "type": "varchar"
+        },
+        "billingAddressCountry": {
+            "type": "varchar"
+        }
+    },
+    "links": {}
+}
